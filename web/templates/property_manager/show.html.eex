@@ -1,0 +1,33 @@
+<h2>Show property manager</h2>
+
+<ul>
+
+  <li>
+    <strong>First name:</strong>
+    <%= @property_manager.first_name %>
+  </li>
+
+  <li>
+    <strong>Last name:</strong>
+    <%= @property_manager.last_name %>
+  </li>
+
+  <li>
+    <strong>Email:</strong>
+    <%= @property_manager.email %>
+  </li>
+
+  <li>
+    <strong>Phone number:</strong>
+    <%= @property_manager.phone_number %>
+  </li>
+
+  <li>
+    <strong>Company:</strong>
+    <%= @property_manager.company_id %>
+  </li>
+
+</ul>
+
+<%= link "Edit", to: property_manager_path(@conn, :edit, @property_manager) %>
+<%= link "Back", to: property_manager_path(@conn, :index) %>
