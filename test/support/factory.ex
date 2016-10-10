@@ -7,6 +7,17 @@ defmodule LordCore.Factory do
     }
   end
 
+  def user_factory do
+    %LordCore.User{
+      email: "user@example.com",
+      first_name: "chris",
+      last_name: "power",
+      username: "cpow85",
+      email: "manager@example.com",
+      password_hash: "something",
+    }
+  end
+
   def property_manager_factory do
     %LordCore.PropertyManager{
       first_name: "chris",

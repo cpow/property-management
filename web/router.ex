@@ -7,7 +7,7 @@ defmodule LordCore.Router do
     plug :fetch_flash
     plug :protect_from_forgery
     plug :put_secure_browser_headers
-    plug LordCore.PropertyManagerAuth, repo: LordCore.Repo
+    plug LordCore.Auth, repo: LordCore.Repo
   end
 
   pipeline :api do
@@ -21,6 +21,7 @@ defmodule LordCore.Router do
     resources "/users", UserController
     resources "/companies", CompanyController
     resources "/property_managers", PropertyManagerController
+    resources "/sessions", SessionController, only: [:new, :create, :delete]
   end
 
   # Other scopes may use custom stacks.

@@ -6,10 +6,10 @@ defmodule LordCore.CompanyControllerTest do
   @invalid_attrs %{}
 
   test "lists all entries on index", %{conn: conn} do
-    manager = insert(:property_manager)
+    user = insert(:user)
 
     conn = conn
-    |> assign(:current_property_manager, manager)
+    |> assign(:current_user, user)
     |> get(company_path(conn, :index))
 
     assert html_response(conn, 200) =~ "Listing companies"
@@ -44,11 +44,11 @@ defmodule LordCore.CompanyControllerTest do
   end
 
   test "renders page not found when id is nonexistent", %{conn: conn} do
-    manager = insert(:property_manager)
+    user = insert(:user)
 
     assert_error_sent 404, fn ->
       conn
-      |> assign(:current_property_manager, manager)
+      |> assign(:current_user, user)
       |> get(company_path(conn, :show, -1))
     end
   end

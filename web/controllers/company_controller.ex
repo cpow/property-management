@@ -65,7 +65,7 @@ defmodule LordCore.CompanyController do
   end
 
   defp authenticate(conn, _opts) do
-    if conn.assigns.current_property_manager do
+    if conn.assigns.current_user do
       conn
     else
       conn
