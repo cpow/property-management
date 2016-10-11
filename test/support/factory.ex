@@ -14,8 +14,7 @@ defmodule LordCore.Factory do
       last_name: "power",
       username: "cpow85",
       email: "manager@example.com",
-      password: "something",
-      password_confirmation: "something",
+      password_hash: Comeonin.Bcrypt.hashpwsalt("something")
     }
   end
 

@@ -9,7 +9,7 @@ defmodule LordCore.SessionController do
     case LordCore.Auth.login_by_email_and_pass(conn, email, pass, repo: Repo) do
       {:ok, conn} ->
         conn
-        |> put_flash(:info, "Welcome Back!")
+        |> put_flash(:info, "Welcome Back! #{conn.assigns.current_user.first_name}")
         |> redirect(to: page_path(conn, :index))
       {:error, _reson, conn} ->
         conn
