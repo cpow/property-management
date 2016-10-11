@@ -43,6 +43,7 @@ defmodule LordCore.Mixfile do
   defp deps do
     [{:phoenix, "~> 1.2.1"},
      {:comeonin, "~> 2.0"},
+     {:hound, "~>1.0"},
      {:ex_machina, "~> 1.0"},
      {:phoenix_pubsub, "~> 1.0"},
      {:phoenix_ecto, "~> 3.0"},

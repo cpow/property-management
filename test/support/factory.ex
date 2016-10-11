@@ -14,7 +14,8 @@ defmodule LordCore.Factory do
       last_name: "power",
       username: "cpow85",
       email: "manager@example.com",
-      password_hash: "something",
+      password: "something",
+      password_confirmation: "something",
     }
   end
 
