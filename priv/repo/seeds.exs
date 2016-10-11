@@ -11,20 +11,25 @@
 # and so on) as they will fail if something goes wrong.
 alias LordCore.Repo
 alias LordCore.Company
-alias LordCore.PropertyManager
 alias LordCore.User
+alias LordCore.Role
 
-
-Repo.insert!(%User{
-  first_name: "tophie",
-  last_name: "bear",
-  email: "cpow@example.com"
-})
+#Create all Roles that are needed in the application to get started
+mgmt_role = Repo.insert!(%Role{name: "Property Manager", admin: false})
+Repo.insert!(%Role{name: "Tenant", admin: false})
+Repo.insert!(%Role{name: "Administrator", admin: true})
 
 company = Repo.insert!(%Company{name: "first properties"})
 
-Repo.insert!(%PropertyManager{
-  first_name: "tophie",
-  last_name: "bear",
-  company_id: company.id,
-})
+property_manager = %User{}
+  |> User.registration_changeset(%{
+    first_name: "tophie",
+    last_name: "bear",
+    username: "manager1234",
+    email: "manager@example.com",
+    password: "test1234",
+    password_confirmation: "test1234",
+    role_id: mgmt_role.id,
+    company_id: company.id
+  })
+  |> Repo.insert!

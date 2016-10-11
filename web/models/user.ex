@@ -9,6 +9,8 @@ defmodule LordCore.User do
     field :username, :string
     field :first_name, :string
     field :last_name, :string
+    belongs_to :role, LordCore.Role
+    belongs_to :company, LordCore.Company
 
     timestamps()
   end
@@ -18,8 +20,8 @@ defmodule LordCore.User do
   """
   def changeset(model, params \\ %{}) do
     model
-    |> cast(params, ~w(email username first_name last_name), [])
-    |> validate_required([:email, :username, :first_name, :last_name])
+    |> cast(params, ~w(email username first_name last_name role_id), [])
+    |> validate_required([:email, :username, :first_name, :last_name, :role_id])
   end
 
   def registration_changeset(model, params) do

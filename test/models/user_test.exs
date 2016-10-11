@@ -8,7 +8,9 @@ defmodule LordCore.UserTest do
     first_name: "some content",
     last_name: "some content",
     password: "some content",
-    username: "some content"}
+    username: "some content",
+    role_id: "1"
+  }
   @invalid_attrs %{}
 
   test "changeset with valid attributes" do

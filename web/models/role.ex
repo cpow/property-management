@@ -1,10 +1,9 @@
-defmodule LordCore.Company do
+defmodule LordCore.Role do
   use LordCore.Web, :model
 
-  schema "companies" do
+  schema "roles" do
     field :name, :string
-    field :address, :string
-    field :phone_number, :string
+    field :admin, :boolean, default: false
     has_many :users, LordCore.User
 
     timestamps()
@@ -15,7 +14,7 @@ defmodule LordCore.Company do
   """
   def changeset(struct, params \\ %{}) do
     struct
-    |> cast(params, [:name, :address, :phone_number])
-    |> validate_required([:name, :address, :phone_number])
+    |> cast(params, [:name, :admin])
+    |> validate_required([:name, :admin])
   end
 end
