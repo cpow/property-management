@@ -8,6 +8,7 @@ defmodule LordCore.Auth do
 
   def call(conn, repo) do
     case conn.assigns do
+      #this case is for testing
       %{current_user: %LordCore.User{}} ->
         conn
       _ ->
