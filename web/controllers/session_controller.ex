@@ -1,5 +1,7 @@
 defmodule LordCore.SessionController do
+  import Plug.Conn
   use LordCore.Web, :controller
+  require IEx
 
   def new(conn, _) do
     render conn, "new.html"

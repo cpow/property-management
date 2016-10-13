@@ -22,14 +22,14 @@ Repo.insert!(%Role{name: "Administrator", admin: true})
 company = Repo.insert!(%Company{name: "first properties"})
 
 property_manager = %User{}
-  |> User.registration_changeset(%{
-    first_name: "tophie",
-    last_name: "bear",
-    username: "manager1234",
-    email: "manager@example.com",
-    password: "test1234",
-    password_confirmation: "test1234",
-    role_id: mgmt_role.id,
-    company_id: company.id
-  })
-  |> Repo.insert!
+|> User.registration_changeset(%{
+  first_name: "tophie",
+  last_name: "bear",
+  username: "manager1234",
+  email: "manager@example.com",
+  password: "test1234",
+  password_confirmation: "test1234",
+  role_id: mgmt_role.id,
+  company_id: company.id
+})
+|> Repo.insert!

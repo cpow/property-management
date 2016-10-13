@@ -8,19 +8,29 @@ defmodule LordCore.Auth do
 
   def call(conn, repo) do
     case conn.assigns do
-      #this case is for testing
+      # this case is for testing
+      # essentially this is a backdoor for loggin in a user for tests
       %{current_user: %LordCore.User{}} ->
         conn
       _ ->
         user_id = get_session(conn, :user_id)
-        user = user_id && repo.get(LordCore.User, user_id)
-        assign(conn, :current_user, user)
+        if user_id do
+          user = repo.get(LordCore.User, user_id)
+          conn
+          |> assign(:current_user, user)
+          |> assign(:role, role_for_user(user))
+        else
+          conn
+          |> assign(:current_user, nil)
+          |> assign(:role, %{name: "Not Logged In"})
+        end
     end
   end
 
   def login(conn, user) do
     conn
     |> assign(:current_user, user)
+    |> assign(:role, role_for_user(user))
     |> put_session(:user_id, user.id)
     |> configure_session(renew: true)
   end
@@ -42,5 +52,9 @@ defmodule LordCore.Auth do
 
   def logout(conn) do
     configure_session(conn, drop: true)
+  end
+
+  def role_for_user(user) do
+    LordCore.Repo.get(LordCore.Role, user.role_id)
   end
 end
