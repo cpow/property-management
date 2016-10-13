@@ -20,8 +20,9 @@ defmodule LordCore.Router do
     get "/", PageController, :index
     resources "/users", UserController
     resources "/companies", CompanyController
-    resources "/property_managers", PropertyManagerController
     resources "/sessions", SessionController, only: [:new, :create, :delete]
+    resources "/property_management_dashboard",
+      PropertyManagementDashboardController, only: [:index]
   end
 
   # Other scopes may use custom stacks.

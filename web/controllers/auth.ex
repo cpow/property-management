@@ -22,7 +22,7 @@ defmodule LordCore.Auth do
         else
           conn
           |> assign(:current_user, nil)
-          |> assign(:role, %{name: "Not Logged In"})
+          |> assign(:role, %{name: "Logged Out"})
         end
     end
   end
