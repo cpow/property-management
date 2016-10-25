@@ -14,6 +14,16 @@ defmodule LordCore.Factory do
     }
   end
 
+  def property_factory do
+    %LordCore.Property{
+      name: "first property",
+      address: "34 brittin ave",
+      city: "Bridgeport",
+      state: "CT",
+      zip: "06605",
+    }
+  end
+
   def user_factory do
     %LordCore.User{
       email: sequence("user@example.com"),

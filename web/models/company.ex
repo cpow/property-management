@@ -6,6 +6,7 @@ defmodule LordCore.Company do
     field :address, :string
     field :phone_number, :string
     has_many :users, LordCore.User
+    has_many :properties, LordCore.Property
 
     timestamps()
   end

@@ -9,7 +9,8 @@ defmodule LordCore.PropertyManagementDashboardController do
 
   def index(conn, _) do
     user = conn.assigns.current_user
-    company = Repo.get(Company, user.company_id)
+    company = Repo.get(Company, user.company_id) |> Repo.preload :properties
+
     conn
     |> render("index.html", %{user: user, company: company})
   end
