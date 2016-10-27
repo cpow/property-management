@@ -1,0 +1,6 @@
+<h1>Welcome to <%= @company.name %> Dashboard!</h1>
+<ul>
+  <%= for property <- @company.properties do %>
+    <li><%= property.name %></li>
+  <% end %>
+</ul>

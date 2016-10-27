@@ -1,6 +1,0 @@
-<h2>New property manager</h2>
-
-<%= render "form.html", changeset: @changeset,
-                        action: property_manager_path(@conn, :create) %>
-
-<%= link "Back", to: property_manager_path(@conn, :index) %>

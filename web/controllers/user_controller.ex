@@ -1,6 +1,5 @@
 defmodule LordCore.UserController do
   use LordCore.Web, :controller
-
   alias LordCore.User
 
   def index(conn, _params) do

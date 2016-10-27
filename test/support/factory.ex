@@ -3,28 +3,35 @@ defmodule LordCore.Factory do
 
   def company_factory do
     %LordCore.Company{
-      name: "some property management company"
+      name: sequence("some property management company")
+    }
+  end
+
+  def role_factory do
+    %LordCore.Role{
+      name: sequence("Role"),
+      admin: false
+    }
+  end
+
+  def property_factory do
+    %LordCore.Property{
+      name: "first property",
+      address: "34 brittin ave",
+      city: "Bridgeport",
+      state: "CT",
+      zip: "06605",
     }
   end
 
   def user_factory do
     %LordCore.User{
-      email: "user@example.com",
+      email: sequence("user@example.com"),
       first_name: "chris",
       last_name: "power",
       username: "cpow85",
-      email: "manager@example.com",
-      password_hash: Comeonin.Bcrypt.hashpwsalt("something")
-    }
-  end
-
-  def property_manager_factory do
-    %LordCore.PropertyManager{
-      first_name: "chris",
-      last_name: "power",
-      email: "manager@example.com",
-      company: build(:company),
-      password_hash: "something",
+      password_hash: Comeonin.Bcrypt.hashpwsalt("something"),
+      role: insert(:role)
     }
   end
 end
