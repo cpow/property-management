@@ -26,7 +26,8 @@ property = Repo.insert!(%Property{
   address: "32 brittin ave",
   city: "bridgeport",
   state: "CT",
-  zip: "06605"
+  zip: "06605",
+  company_id: company.id
 })
 
 property_manager = %User{}
@@ -44,6 +45,7 @@ property_manager = %User{}
 
 tenant = %User{}
 |> User.registration_changeset(%{
+  first_name: "tenant",
   first_name: "tenant",
   last_name: "person",
   username: "tenant1234",
