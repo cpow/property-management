@@ -18,7 +18,11 @@ defmodule LordCore.Router do
     pipe_through :browser # Use the default browser stack
 
     get "/", PageController, :index
-    resources "/users", UserController
+    resources "/users", UserController do
+      resources "/stripe_accounts",
+        StripeAccountController,
+        only: [:new]
+    end
     resources "/companies", CompanyController
     resources "/sessions", SessionController, only: [:new, :create, :delete]
     resources "/property_management_dashboard",
