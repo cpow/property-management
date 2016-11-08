@@ -42,6 +42,7 @@ defmodule LordCore.Mixfile do
   # Type `mix help deps` for examples and options.
   defp deps do
     [{:phoenix, "~> 1.2.1"},
+     {:mix_test_watch, "~> 0.1.1"},
      {:comeonin, "~> 2.0"},
      {:hound, "~>1.0"},
      {:ex_machina, "~> 1.0"},
