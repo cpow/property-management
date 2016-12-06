@@ -1,4 +1,5 @@
 use Mix.Config
+require IEx
 
 # For development, we disable any cache and enable
 # debugging and code reloading.
@@ -14,6 +15,9 @@ config :lord_core, LordCore.Endpoint,
   watchers: [node: ["node_modules/brunch/bin/brunch", "watch", "--stdin",
                     cd: Path.expand("../", __DIR__)]]
 
+
+config :mix_test_watch,
+  clear: true
 
 # Watch static and templates for browser reloading.
 config :lord_core, LordCore.Endpoint,

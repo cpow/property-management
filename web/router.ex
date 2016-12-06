@@ -21,7 +21,7 @@ defmodule LordCore.Router do
     resources "/users", UserController do
       resources "/stripe_accounts",
         StripeAccountController,
-        only: [:new]
+        only: [:new, :create]
     end
     resources "/companies", CompanyController
     resources "/sessions", SessionController, only: [:new, :create, :delete]

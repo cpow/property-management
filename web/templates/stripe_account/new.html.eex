@@ -1,17 +1,23 @@
-<h1>FUCK YOU</h1>
+<h1>Connect your account!</h1>
+
+<p>This is where you can connect your account to pay for your rent!</p>
 
 <!-- A hidden input named public_token will be appended to this form
 once the user has completed the Link flow. Link will then submit the
 form, sending the public_token to your server. -->
-<form id="some-id" method="POST" action="/user_stripe_account"></form>
+<form id="plaid-form"
+      method="POST"
+      action="/users/<%= @user.id %>/stripe_accounts">
+  <input type="hidden" name="_csrf_token" value="<%= get_csrf_token() %>">
+</form>
 
 <!-- To use Link with longtail institutions on Connect, set the
 data-longtail attribute to 'true'. See the Parameter Reference for
 additional documentation. -->
 <script
   src="https://cdn.plaid.com/link/stable/link-initialize.js"
-  data-client-name="Client Name"
-  data-form-id="some-id"
+  data-client-name="Lord Core Property Management"
+  data-form-id="plaid-form"
   data-key="test_key"
   data-product="auth"
   data-env="tartan">
