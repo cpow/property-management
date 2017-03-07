@@ -1,37 +1,19 @@
-# Script for populating the database. You can run it as:
-#
-#     mix run priv/repo/seeds.exs
-#
-# Inside the script, you can read and write to any of your
-# repositories directly:
-#
-#     LordCore.Repo.insert!(%LordCore.SomeModel{})
-#
-# We recommend using the bang functions (`insert!`, `update!`
-# and so on) as they will fail if something goes wrong.
-alias LordCore.Repo
-alias LordCore.Company
-alias LordCore.Property
-alias LordCore.User
-alias LordCore.Role
+mgmt_role = LordCore.Factory.insert(:role, name: "Property Manager")
+tenant_role = LordCore.Factory.insert(:role, name: "Tenant")
+LordCore.Factory.insert(:role, name: "Administrator")
 
-#Create all Roles that are needed in the application to get started
-mgmt_role = Repo.insert!(%Role{name: "Property Manager", admin: false})
-tenant_role = Repo.insert!(%Role{name: "Tenant", admin: false})
-Repo.insert!(%Role{name: "Administrator", admin: true})
+company = LordCore.Factory.insert(:company, name: "first properties")
 
-company = Repo.insert!(%Company{name: "first properties"})
-property = Repo.insert!(%Property{
+property = LordCore.Factory.insert(:user,
   name: "brittin ave",
   address: "32 brittin ave",
   city: "bridgeport",
   state: "CT",
   zip: "06605",
   company_id: company.id
-})
+)
 
-property_manager = %User{}
-|> User.registration_changeset(%{
+LordCore.Factory.insert(:user,
   first_name: "tophie",
   last_name: "bear",
   username: "manager1234",
@@ -40,11 +22,9 @@ property_manager = %User{}
   password_confirmation: "test1234",
   role_id: mgmt_role.id,
   company_id: company.id
-})
-|> Repo.insert!
+)
 
-tenant = %User{}
-|> User.registration_changeset(%{
+LordCore.Factory.insert(:user,
   first_name: "tenant",
   first_name: "tenant",
   last_name: "person",
@@ -54,5 +34,4 @@ tenant = %User{}
   password_confirmation: "test1234",
   role_id: tenant_role.id,
   property_id: property.id
-})
-|> Repo.insert!
+)

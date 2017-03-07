@@ -18,19 +18,7 @@ defmodule LordCore.Mixfile do
   # Type `mix help compile.app` for more information.
   def application do
     [mod: {LordCore, []},
-     applications: [
-        :comeonin,
-        :ex_machina,
-        :phoenix,
-        :phoenix_pubsub,
-        :phoenix_html,
-        :cowboy,
-        :logger,
-        :gettext,
-        :phoenix_ecto,
-        :postgrex
-      ]
-    ]
+     extra_applications: [:logger]]
   end
 
   # Specifies which paths to compile per environment.
