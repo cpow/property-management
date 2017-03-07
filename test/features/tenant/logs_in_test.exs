@@ -1,7 +1,7 @@
 defmodule LordCore.Features.Tenant.LogsInTest do
   use LordCore.ConnCase
   use Hound.Helpers
-  hound_session
+  hound_session()
 
   test "logs in successfully", _ do
     role = insert(:role, name: "Tenant")
@@ -10,8 +10,8 @@ defmodule LordCore.Features.Tenant.LogsInTest do
 
     sign_in_as(user)
 
-    assert page_source =~ "Welcome Back! #{user.first_name}"
-    assert page_source =~ "Current Property: #{property.name}"
+    assert page_source() =~ "Welcome Back! #{user.first_name}"
+    assert page_source() =~ "Current Property: #{property.name}"
   end
 
   def sign_in_as(user) do

@@ -1,14 +1,14 @@
 defmodule LordCore.Features.PropertyManager.LogsInTest do
   use LordCore.ConnCase
   use Hound.Helpers
-  hound_session
+  hound_session()
 
   test "logs in successfully", _ do
     user = insert(:user)
 
     sign_in_as(user)
 
-    assert page_source =~ "Welcome Back! #{user.first_name}"
+    assert page_source() =~ "Welcome Back! #{user.first_name}"
   end
 
   test "sees their company after logging in" do
@@ -18,7 +18,7 @@ defmodule LordCore.Features.PropertyManager.LogsInTest do
 
     sign_in_as(user)
 
-    assert page_source =~ "#{company.name}"
+    assert page_source() =~ "#{company.name}"
   end
 
   test "sees a list of properties the company has" do
@@ -29,7 +29,7 @@ defmodule LordCore.Features.PropertyManager.LogsInTest do
 
     sign_in_as(user)
 
-    assert page_source =~ "#{property.name}"
+    assert page_source() =~ "#{property.name}"
   end
 
   def sign_in_as(user) do

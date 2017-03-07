@@ -4,7 +4,7 @@ defmodule LordCore.Plugs.AuthTest do
   test "returns just the conn when user is already set" do
     user = insert(:user)
 
-    conn = build_conn
+    conn = build_conn()
     |> assign(:current_user, user)
     |> LordCore.Auth.call(LordCore.Repo)
 

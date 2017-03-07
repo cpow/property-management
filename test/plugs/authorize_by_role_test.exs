@@ -2,8 +2,8 @@ defmodule LordCore.Plugs.AuthorizeByRoleTest do
   use LordCore.ConnCase
 
   test "redirects if a user is not logged in" do
-    conn = build_conn
-           |> get(property_management_dashboard_path(build_conn, :index))
+    conn = build_conn()
+           |> get(property_management_dashboard_path(build_conn(), :index))
 
     assert html_response(conn, 302)
   end
@@ -13,7 +13,7 @@ defmodule LordCore.Plugs.AuthorizeByRoleTest do
     company = insert(:company)
     user = insert(:user, role: role, company: company)
 
-    conn = build_conn
+    conn = build_conn()
            |> assign(:current_user, user)
            |> assign(:role, role)
 
@@ -25,7 +25,7 @@ defmodule LordCore.Plugs.AuthorizeByRoleTest do
   test "redirects if user is not authorized" do
     user = insert(:user)
 
-    conn = build_conn
+    conn = build_conn()
            |> assign(:current_user, user)
            |> assign(:role, user.role)
 
