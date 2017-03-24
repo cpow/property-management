@@ -2,21 +2,27 @@ defmodule LordCore.SessionController do
   import Plug.Conn
   use LordCore.Web, :controller
 
-  def new(conn, _) do
-    render conn, "new.html"
+  alias LordCore.{Repo, User}
+
+  def create(conn, %{"email" => email, "password" => password}) do
+    case Repo.get_by(User, email: email) do
+      nil ->
+        Comeonin.Bcrypt.dummy_checkpw
+        login_failed(conn)
+      user ->
+        if Comeonin.Bcrypt.checkpw(password, user.password_hash) do
+          {:ok, token, _} = Guardian.encode_and_sign(user, :api)
+          render(conn, "token.json", %{token: token})
+        else
+          login_failed(conn)
+        end
+    end
   end
 
-  def create(conn, %{"session" => %{"email" => email, "password" => pass}}) do
-    case LordCore.Auth.login_by_email_and_pass(conn, email, pass, repo: Repo) do
-      {:ok, conn} ->
-        conn
-        |> put_flash(:info, "Welcome Back! #{conn.assigns.current_user.first_name}")
-        |> redirect(to: page_path(conn, :index))
-      {:error, _reson, conn} ->
-        conn
-        |> put_flash(:error, "Invalid username or password")
-        |> render("new.html")
-    end
+  defp login_failed(conn) do
+    conn
+    |> render("login_failed.json", %{})
+    |> halt
   end
 
   def delete(conn, _) do

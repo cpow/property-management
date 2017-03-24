@@ -24,6 +24,21 @@ config :logger, :console,
   format: "$time $metadata[$level] $message\n",
   metadata: [:request_id]
 
+config :guardian, Guardian,
+  issuer: "LordCore",
+  ttl: {30, :days},
+  verify_issuer: true,
+  secret_key: "5NjY6yX7dkT9fBqhTWvkNzYLzJYuzVtOMZe3jM+3tRDoS5xEwTyUKBIVjPAiMexK",
+  serializer: LordCore.GuardianSerializer
+
+config :phoenix, :format_encoders,
+  "json-api": Poison
+  
+config :plug, :mimes, %{
+  "application/vnd.api+json" => ["json-api"]
+}
+
+
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 import_config "#{Mix.env}.exs"

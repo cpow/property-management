@@ -11,7 +11,16 @@ defmodule LordCore.Router do
   end
 
   pipeline :api do
-    plug :accepts, ["json"]
+    plug :accepts, ["json", "json-api"]
+    plug Guardian.Plug.VerifyHeader
+    plug Guardian.Plug.LoadResource
+    plug JaSerializer.Deserializer
+  end
+
+  scope "/api", LordCore do
+    pipe_through :api
+    resources "/users", UserController, except: [:new, :edit]
+    post "/login", SessionController, :create, as: :login
   end
 
   scope "/", LordCore do
