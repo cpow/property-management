@@ -23,10 +23,10 @@ defmodule LordCore.User do
     model
     |> cast(
             params,
-            ~w(email username first_name last_name role_id),
+            ~w(email username first_name last_name),
             ~w(property_id company_id)
             )
-    |> validate_required([:email, :username, :first_name, :last_name, :role_id])
+    # |> validate_required([:email, :username, :first_name, :last_name, :role_id])
   end
 
   def registration_changeset(model, params) do

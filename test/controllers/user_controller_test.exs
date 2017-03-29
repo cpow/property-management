@@ -4,81 +4,62 @@ defmodule LordCore.UserControllerTest do
   alias LordCore.User
 
   @invalid_attrs %{}
+  @valid_attrs %{}
+  @valid_attrs %{email: "test@example.com",
+                 first_name: "tophie",
+                 last_name: "power",
+                 username: "tophie_brown",
+                 password: "test1234",
+                 password_confirmation: "test1234"
+                }
 
-  setup do
-    role = insert(:role)
-
-    %{
-      conn: build_conn(),
-      user:
-      %{
-        email: "some content",
-        first_name: "some content",
-        last_name: "some content",
-        username: "some content",
-        password: "something",
-        password_confirmation: "something",
-        role_id: role.id
-      }
-    }
-  end
-
-  test "lists all entries on index", %{conn: conn, user: _user} do
+  test "lists all entries on index", %{conn: conn} do
     conn = get conn, user_path(conn, :index)
-    assert html_response(conn, 200) =~ "Listing users"
+    assert json_response(conn, 200)["data"] == rendered_index()["data"]
   end
 
-  test "renders form for new resources", %{conn: conn, user: _user} do
-    conn = get conn, user_path(conn, :new)
-    assert html_response(conn, 200) =~ "New user"
-  end
-
-  test "creates resource and redirects when data is valid", %{conn: conn, user: user} do
-    conn = post conn, user_path(conn, :create), user: user
-    assert redirected_to(conn) == user_path(conn, :index)
-    assert Repo.get_by(User, %{email: user.email})
-  end
-
-  test "does not create resource and renders errors when data is invalid", %{conn: conn, user: _user} do
-    conn = post conn, user_path(conn, :create), user: %{}
-    assert html_response(conn, 200) =~ "New user"
-  end
-
-  test "shows chosen resource", %{conn: conn, user: _user} do
-    user = Repo.insert! %User{}
+  test "shows chosen resource", %{conn: conn} do
+    user = insert(:user)
     conn = get conn, user_path(conn, :show, user)
-    assert html_response(conn, 200) =~ "Show user"
+    assert json_response(conn, 200)["data"] == rendered_user(user)["data"]
   end
 
-  test "renders page not found when id is nonexistent", %{conn: conn, user: _user} do
-    assert_error_sent 404, fn ->
-      get conn, user_path(conn, :show, -1)
-    end
+  test "creates and renders resource when data is valid", %{conn: conn} do
+    conn = post conn, user_path(conn, :create), user: @valid_attrs
+    assert json_response(conn, 201)["data"]["id"]
+    assert Repo.get_by(User, %{email: "test@example.com"})
   end
 
-  test "renders form for editing chosen resource", %{conn: conn, user: _user} do
+  test "does not create resource and renders errors when data is invalid", %{conn: conn} do
+    conn = post conn, user_path(conn, :create), user: @invalid_attrs
+    assert json_response(conn, 422)["errors"] != %{}
+  end
+
+  test "updates and renders chosen resource when data is valid", %{conn: conn} do
     user = Repo.insert! %User{}
-    conn = get conn, user_path(conn, :edit, user)
-    assert html_response(conn, 200) =~ "Edit user"
+    conn = put conn, user_path(conn, :update, user), user: @valid_attrs
+    assert json_response(conn, 200)["data"]["id"]
+    assert Repo.get_by(User, %{email: "test@example.com"})
   end
 
-  test "updates chosen resource and redirects when data is valid", %{conn: conn, user: user} do
-    first_user = Repo.insert! %User{}
-    conn = put conn, user_path(conn, :update, first_user), user: user
-    assert redirected_to(conn) == user_path(conn, :show, first_user)
-    assert Repo.get_by(User, %{email: user.email})
-  end
-
-  test "does not update chosen resource and renders errors when data is invalid", %{conn: conn, user: _user} do
+  test "does not update chosen resource and renders errors when data is invalid", %{conn: conn} do
     user = Repo.insert! %User{}
     conn = put conn, user_path(conn, :update, user), user: @invalid_attrs
-    assert html_response(conn, 200) =~ "Edit user"
+    assert json_response(conn, 422)["errors"] != %{}
   end
 
-  test "deletes chosen resource", %{conn: conn, user: _user} do
+  test "deletes chosen resource", %{conn: conn} do
     user = Repo.insert! %User{}
     conn = delete conn, user_path(conn, :delete, user)
-    assert redirected_to(conn) == user_path(conn, :index)
+    assert response(conn, 204)
     refute Repo.get(User, user.id)
+  end
+
+  defp rendered_user(user) do
+    LordCore.UserView.render("show.json-api", data: user)
+  end
+
+  defp rendered_index do
+    LordCore.UserView.render("index.json-api", data: Repo.all(User))
   end
 end

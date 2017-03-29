@@ -1,41 +1,31 @@
 defmodule LordCore.CompanyController do
   use LordCore.Web, :controller
-  plug :authenticate when action in [:index, :show]
-
   alias LordCore.Company
 
   def index(conn, _params) do
     companies = Repo.all(Company)
-    render(conn, "index.html", companies: companies)
-  end
-
-  def new(conn, _params) do
-    changeset = Company.changeset(%Company{})
-    render(conn, "new.html", changeset: changeset)
+    render(conn, "index.json-api", data: companies)
   end
 
   def create(conn, %{"company" => company_params}) do
     changeset = Company.changeset(%Company{}, company_params)
 
     case Repo.insert(changeset) do
-      {:ok, _company} ->
+      {:ok, company} ->
         conn
-        |> put_flash(:info, "Company created successfully.")
-        |> redirect(to: company_path(conn, :index))
+        |> put_status(:created)
+        |> put_resp_header("location", company_path(conn, :show, company))
+        |> render("show.json-api", data: company)
       {:error, changeset} ->
-        render(conn, "new.html", changeset: changeset)
+        conn
+        |> put_status(:unprocessable_entity)
+        |> render(LordCore.ChangesetView, "error.json", changeset: changeset)
     end
   end
 
   def show(conn, %{"id" => id}) do
-    company = Repo.get!(Company, id)
-    render(conn, "show.html", company: company)
-  end
-
-  def edit(conn, %{"id" => id}) do
-    company = Repo.get!(Company, id)
-    changeset = Company.changeset(company)
-    render(conn, "edit.html", company: company, changeset: changeset)
+    company = Repo.get(Company, id)
+    render(conn, "show.json-api", data: company)
   end
 
   def update(conn, %{"id" => id, "company" => company_params}) do
@@ -44,34 +34,18 @@ defmodule LordCore.CompanyController do
 
     case Repo.update(changeset) do
       {:ok, company} ->
-        conn
-        |> put_flash(:info, "Company updated successfully.")
-        |> redirect(to: company_path(conn, :show, company))
+        render(conn, "show.json-api", data: company)
       {:error, changeset} ->
-        render(conn, "edit.html", company: company, changeset: changeset)
+        conn
+        |> put_status(:unprocessable_entity)
+        |> render(LordCore.ChangesetView, "error.json", changeset: changeset)
     end
   end
 
   def delete(conn, %{"id" => id}) do
     company = Repo.get!(Company, id)
-
-    # Here we use delete! (with a bang) because we expect
-    # it to always work (and if it does not, it will raise).
     Repo.delete!(company)
 
-    conn
-    |> put_flash(:info, "Company deleted successfully.")
-    |> redirect(to: company_path(conn, :index))
-  end
-
-  defp authenticate(conn, _opts) do
-    if conn.assigns.current_user do
-      conn
-    else
-      conn
-      |> put_flash(:error, "you must be logged in to view that page")
-      |> redirect(to: page_path(conn, :index))
-      |> halt()
-    end
+    send_resp(conn, :no_content, "")
   end
 end

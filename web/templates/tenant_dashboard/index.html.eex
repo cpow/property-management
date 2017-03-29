@@ -1,5 +1,0 @@
-<h1>Welcome to Lord Core</h1>
-<h2>Current Property: <%= @property.name %></h2>
-
-<%= link "Stripe Account", to: user_stripe_account_path(@conn, :new, @user.id)%>
-

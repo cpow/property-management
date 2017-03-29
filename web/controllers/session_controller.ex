@@ -24,10 +24,4 @@ defmodule LordCore.SessionController do
     |> render("login_failed.json", %{})
     |> halt
   end
-
-  def delete(conn, _) do
-    conn
-    |> LordCore.Auth.logout()
-    |> redirect(to: page_path(conn, :index))
-  end
 end
