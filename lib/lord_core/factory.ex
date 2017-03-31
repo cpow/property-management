@@ -7,13 +7,6 @@ defmodule LordCore.Factory do
     }
   end
 
-  def role_factory do
-    %LordCore.Role{
-      name: sequence("Role"),
-      admin: false
-    }
-  end
-
   def property_factory do
     %LordCore.Property{
       name: "first property",
@@ -31,7 +24,7 @@ defmodule LordCore.Factory do
       last_name: "power",
       username: "cpow85",
       password_hash: Comeonin.Bcrypt.hashpwsalt("something"),
-      role: insert(:role)
+      role: "tenant"
     }
   end
 end

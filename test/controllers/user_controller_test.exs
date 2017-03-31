@@ -4,13 +4,13 @@ defmodule LordCore.UserControllerTest do
   alias LordCore.User
 
   @invalid_attrs %{}
-  @valid_attrs %{}
   @valid_attrs %{email: "test@example.com",
                  first_name: "tophie",
                  last_name: "power",
                  username: "tophie_brown",
                  password: "test1234",
-                 password_confirmation: "test1234"
+                 password_confirmation: "test1234",
+                 role: "tenant"
                 }
 
   test "lists all entries on index", %{conn: conn} do

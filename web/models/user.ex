@@ -9,7 +9,7 @@ defmodule LordCore.User do
     field :username, :string
     field :first_name, :string
     field :last_name, :string
-    belongs_to :role, LordCore.Role
+    field :role, :string
     belongs_to :company, LordCore.Company
     belongs_to :property, LordCore.Property
 
@@ -25,7 +25,7 @@ defmodule LordCore.User do
             params,
             ~w(email username first_name last_name company_id property_id)
             )
-    |> validate_required([:email, :username, :first_name, :last_name])
+    |> validate_required([:email, :username, :first_name, :last_name, :role])
   end
 
   def registration_changeset(model, params) do

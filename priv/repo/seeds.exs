@@ -1,7 +1,3 @@
-mgmt_role = LordCore.Factory.insert(:role, name: "Property Manager")
-tenant_role = LordCore.Factory.insert(:role, name: "Tenant")
-LordCore.Factory.insert(:role, name: "Administrator")
-
 company = LordCore.Factory.insert(:company, name: "first properties")
 
 property = LordCore.Factory.insert(:property,
@@ -19,7 +15,7 @@ LordCore.Factory.insert(:user,
   username: "manager1234",
   email: "manager@example.com",
   password_hash: Comeonin.Bcrypt.hashpwsalt("test1234"),
-  role: mgmt_role,
+  role: "property_manager",
   company_id: company.id
 )
 
@@ -30,6 +26,6 @@ LordCore.Factory.insert(:user,
   username: "tenant1234",
   email: "tenant@example.com",
   password_hash: Comeonin.Bcrypt.hashpwsalt("test1234"),
-  role: tenant_role,
+  role: "tenant",
   property_id: property.id
 )

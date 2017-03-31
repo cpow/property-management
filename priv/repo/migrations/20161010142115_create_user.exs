@@ -8,6 +8,7 @@ defmodule LordCore.Repo.Migrations.CreateUser do
       add :username, :string
       add :first_name, :string
       add :last_name, :string
+      add :role, :string
 
       timestamps()
     end

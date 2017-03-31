@@ -24,6 +24,10 @@ config :logger, :console,
   format: "$time $metadata[$level] $message\n",
   metadata: [:request_id]
 
+config :lord_core, :defaults,
+  user_roles: ~w(disabled admin tenant property_manager)
+
+
 config :guardian, Guardian,
   issuer: "LordCore",
   ttl: {30, :days},

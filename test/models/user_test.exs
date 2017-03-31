@@ -9,7 +9,7 @@ defmodule LordCore.UserTest do
     last_name: "some content",
     password: "some content",
     username: "some content",
-    role_id: "1"
+    role: "tenant"
   }
   @invalid_attrs %{}
 
