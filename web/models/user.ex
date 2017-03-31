@@ -23,7 +23,7 @@ defmodule LordCore.User do
     model
     |> cast(
             params,
-            ~w(email username first_name last_name company_id property_id)
+            ~w(email username first_name last_name company_id property_id role)
             )
     |> validate_required([:email, :username, :first_name, :last_name, :role])
   end
@@ -31,8 +31,8 @@ defmodule LordCore.User do
   def registration_changeset(model, params) do
     model
     |> changeset(params)
-    |> cast(params, ~w(password))
-    |> validate_required([])
+    |> cast(params, ~w(password role email first_name last_name company_id))
+    |> validate_required([:role, :email, :first_name, :last_name])
     |> validate_length(:password, min: 6, max: 100)
     |> validate_confirmation(:password, message: "does not match password")
     |> put_pass_hash()
