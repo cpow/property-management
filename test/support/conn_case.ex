@@ -40,6 +40,33 @@ defmodule LordCore.ConnCase do
       Ecto.Adapters.SQL.Sandbox.mode(LordCore.Repo, {:shared, self()})
     end
 
-    {:ok, conn: Phoenix.ConnTest.build_conn()}
+    conn = Phoenix.ConnTest.build_conn()
+
+    conn =
+      unless tags[:no_user] do
+        user = case tags[:role] do
+          nil ->
+            LordCore.Factory.insert(:user)
+          role ->
+            LordCore.Factory.insert(:user, role: role)
+        end
+
+        {:ok, token, _} = Guardian.encode_and_sign(user, :api)
+
+        conn
+          |> Guardian.Plug.api_sign_in(user)
+          |> Plug.Conn.put_req_header("authorization", "Bearer #{token}")
+      else
+        conn
+      end
+
+    conn =
+      conn
+        |> Plug.Conn.put_req_header("accept", "application/vnd.api+json")
+        |> Plug.Conn.put_req_header("content-type", "application/vnd.api+json")
+
+
+
+    {:ok, conn: conn}
   end
 end

@@ -21,6 +21,7 @@ defmodule LordCore.SessionController do
 
   defp login_failed(conn) do
     conn
+    |> put_status(401)
     |> render("login_failed.json", %{})
     |> halt
   end

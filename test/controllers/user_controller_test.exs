@@ -13,6 +13,16 @@ defmodule LordCore.UserControllerTest do
                  role: "tenant"
                 }
 
+  test "me should grab current user from guardian", %{conn: conn} do
+    user = Guardian.Plug.current_resource(conn)
+    conn =
+      conn
+      |> get(user_path(conn, :show, %User{id: "me"}))
+
+    assert json_response(conn, 200) == rendered_user(user)
+  end
+
+
   test "lists all entries on index", %{conn: conn} do
     conn = get conn, user_path(conn, :index)
     assert json_response(conn, 200)["data"] == rendered_index()["data"]
