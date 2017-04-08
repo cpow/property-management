@@ -25,7 +25,7 @@ config :logger, :console,
   metadata: [:request_id]
 
 config :lord_core, :defaults,
-  user_roles: ~w(disabled admin tenant property_manager)
+  user_roles: ~w(disabled admin tenant manager)
 
 
 config :guardian, Guardian,

@@ -4,6 +4,7 @@ defmodule LordCore.UserView do
 
   attributes [
     :name,
-    :email
+    :email,
+    :role
   ]
 end

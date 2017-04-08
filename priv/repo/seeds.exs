@@ -15,7 +15,7 @@ LordCore.Factory.insert(:user,
   username: "manager1234",
   email: "manager@example.com",
   password_hash: Comeonin.Bcrypt.hashpwsalt("test1234"),
-  role: "property_manager",
+  role: "manager",
   company_id: company.id
 )
 
