@@ -7,7 +7,7 @@ defmodule LordCore.Property do
     field :city, :string
     field :state, :string
     field :zip, :string
-    has_many :tenants, LordCore.User
+    has_many :units, LordCore.Unit
     belongs_to :company, LordCore.Company
 
     timestamps()

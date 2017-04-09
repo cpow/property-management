@@ -7,4 +7,11 @@ defmodule LordCore.UserView do
     :email,
     :role
   ]
+
+  has_one :company,
+    include: false,
+    serializer:  LordCore.CompanyView,
+    type: "company",
+    field: :company_id
+
 end

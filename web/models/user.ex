@@ -12,6 +12,7 @@ defmodule LordCore.User do
     field :role, :string
     belongs_to :company, LordCore.Company
     belongs_to :property, LordCore.Property
+    belongs_to :unit, LordCore.Unit
 
     timestamps()
   end

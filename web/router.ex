@@ -23,9 +23,5 @@ defmodule LordCore.Router do
     end
     resources "/companies", CompanyController
     resources "/sessions", SessionController, only: [:new, :create, :delete]
-    resources "/property_management_dashboard",
-      PropertyManagementDashboardController, only: [:index]
-    resources "/tenant_dashboard",
-      TenantDashboardController, only: [:index]
   end
 end

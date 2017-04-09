@@ -6,5 +6,12 @@ defmodule LordCore.CompanyView do
     :name
   ]
 
-  has_many :users, serializer: PortalApi.UserView
+  has_many :users, serializer: LordCore.UserView
+  has_many :properties,
+    serializer: LordCore.PropertyView,
+    links: [
+      related: "/api/v1/companies/:id/properties"
+    ]
+
+  has_many :properties, serializer: LordCore.PropertyView
 end
