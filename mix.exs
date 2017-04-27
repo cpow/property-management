@@ -32,6 +32,7 @@ defmodule LordCore.Mixfile do
     [{:phoenix, "~> 1.2.1"},
      {:mix_test_watch, "~> 0.1.1"},
      {:comeonin, "~> 2.0"},
+     {:stripity_stripe, "2.0.0-alpha.6"},
      {:hound, "~>1.0"},
      {:corsica, "~> 0.4"},
      {:ja_serializer, "~> 0.12.0"},

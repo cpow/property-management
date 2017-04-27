@@ -16,11 +16,10 @@ defmodule LordCore.Router do
 
     post "/login", SessionController, :create, as: :login
 
-    resources "/users", UserController do
-      resources "/stripe_accounts",
-        StripeAccountController,
-        only: [:new, :create]
-    end
+    resources "/stripe-accounts",
+      StripeAccountController,
+      only: [:new, :create, :show]
+
     resources "/companies", CompanyController
     resources "/sessions", SessionController, only: [:new, :create, :delete]
   end

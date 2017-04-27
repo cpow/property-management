@@ -14,6 +14,8 @@ defmodule LordCore.User do
     belongs_to :property, LordCore.Property
     belongs_to :unit, LordCore.Unit
 
+    has_one :stripe_account, LordCore.StripeAccount
+
     timestamps()
   end
 

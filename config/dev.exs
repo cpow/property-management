@@ -45,3 +45,6 @@ config :lord_core, LordCore.Repo,
   database: "lord_core_dev",
   hostname: "localhost",
   pool_size: 10
+
+config :stripity_stripe, secret_key: "sk_test_pw2gaooyvi3aPoTwdOs2XvX2"
+config :stripity_stripe, platform_client_id: "pk_test_TraZpaKP9DVxW6wgjLuN1vyJ"

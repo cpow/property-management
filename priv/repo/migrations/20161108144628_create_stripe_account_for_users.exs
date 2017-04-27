@@ -2,7 +2,7 @@ defmodule LordCore.Repo.Migrations.CreateStripeAccountForUsers do
   use Ecto.Migration
 
   def change do
-    create table(:stripe_account) do
+    create table(:stripe_accounts) do
       add :account_id, :string
       add :secret_key, :string
       add :publishable_key, :string

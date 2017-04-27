@@ -39,6 +39,5 @@ defmodule LordCore.Endpoint do
     signing_salt: "Aerqj7Uk"
 
   plug Corsica, origins: "*", allow_headers: ["accept", "content-type"]
-  
   plug LordCore.Router
 end

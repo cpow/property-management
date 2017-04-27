@@ -16,7 +16,7 @@ defmodule LordCore.StripeAccount do
   """
   def changeset(struct, params \\ %{}) do
     struct
-    |> cast(params, [:account_id, :secret_key, :publishable_key, :managed])
+    |> cast(params, [:account_id, :secret_key, :publishable_key, :managed, :user_id])
     |> validate_required([])
   end
 end
