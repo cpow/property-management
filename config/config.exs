@@ -27,6 +27,9 @@ config :logger, :console,
 config :lord_core, :defaults,
   user_roles: ~w(disabled admin tenant manager)
 
+config :lord_core, :plaid, client_id: "5821375946eb126b6a86080d"
+config :lord_core, :plaid, public_key: "ad640367b8e222632e952b3b5acf51"
+config :lord_core, :plaid, secret: "6f4d6f1933b1e5b7c0b1c9b9873743"
 
 config :guardian, Guardian,
   issuer: "LordCore",
@@ -41,7 +44,6 @@ config :phoenix, :format_encoders,
 config :plug, :mimes, %{
   "application/vnd.api+json" => ["json-api"]
 }
-
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.

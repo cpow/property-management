@@ -4,6 +4,8 @@ defmodule LordCore.Repo.Migrations.CreateStripeAccountForUsers do
   def change do
     create table(:stripe_accounts) do
       add :account_id, :string
+      add :request_id, :string
+      add :stripe_bank_account_token, :string
       add :secret_key, :string
       add :publishable_key, :string
       add :managed, :boolean, default: true, null: false
