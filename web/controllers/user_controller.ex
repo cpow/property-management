@@ -4,17 +4,17 @@ defmodule LordCore.UserController do
 
   plug Guardian.Plug.EnsureAuthenticated, [handler: LordCore.AuthErrorHandler] when not action in [:create, :new]
 
-  def index(conn, _params, current_user) do
+  def index(conn, _params, _current_user) do
     users = Repo.all(User)
     render(conn, "index.json-api", data: users)
   end
 
-  def new(conn, _params, current_user) do
+  def new(conn, _params, _current_user) do
     changeset = User.changeset(%User{})
     render(conn, "new.json-api", changeset: changeset)
   end
 
-  def create(conn, %{"user" => user_params}, current_user) do
+  def create(conn, %{"user" => user_params}, _current_user) do
     changeset = User.registration_changeset(%User{}, user_params)
 
     case Repo.insert(changeset) do
@@ -34,12 +34,12 @@ defmodule LordCore.UserController do
     conn |> render("show.json-api", data: current_user)
   end
 
-  def show(conn, %{"id" => id}, current_user) do
+  def show(conn, %{"id" => id}, _current_user) do
     user = Repo.get!(User, id)
     render(conn, "show.json-api", data: user)
   end
 
-  def update(conn, %{"id" => id, "user" => user_params}, current_user) do
+  def update(conn, %{"id" => id, "user" => user_params}, _current_user) do
     user = Repo.get!(User, id)
     changeset = User.changeset(user, user_params)
 
@@ -53,7 +53,7 @@ defmodule LordCore.UserController do
     end
   end
 
-  def delete(conn, %{"id" => id}, current_user) do
+  def delete(conn, %{"id" => id}, _current_user) do
     user = Repo.get!(User, id)
     Repo.delete!(user)
 

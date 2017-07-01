@@ -11,9 +11,6 @@ defmodule LordCore.User do
     field :last_name, :string
     field :role, :string
     belongs_to :company, LordCore.Company
-    belongs_to :property, LordCore.Property
-    belongs_to :unit, LordCore.Unit
-
     has_one :stripe_account, LordCore.StripeAccount
 
     timestamps()
@@ -26,7 +23,7 @@ defmodule LordCore.User do
     model
     |> cast(
             params,
-            ~w(email username first_name last_name company_id property_id role)
+            ~w(email username first_name last_name company_id role)
             )
     |> validate_required([:email, :username, :first_name, :last_name, :role])
   end

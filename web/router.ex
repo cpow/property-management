@@ -21,6 +21,7 @@ defmodule LordCore.Router do
       only: [:new, :create, :show]
 
     resources "/companies", CompanyController
+    resources "/properties", PropertyController
     resources "/sessions", SessionController, only: [:new, :create, :delete]
   end
 end

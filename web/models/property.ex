@@ -7,12 +7,14 @@ defmodule LordCore.Property do
     field :city, :string
     field :state, :string
     field :zip, :string
-    has_many :units, LordCore.Unit
     belongs_to :company, LordCore.Company
 
     timestamps()
   end
 
+  @doc """
+  Builds a changeset based on the `struct` and `params`.
+  """
   def changeset(struct, params \\ %{}) do
     struct
     |> cast(params, [:name, :address, :city, :state, :zip])

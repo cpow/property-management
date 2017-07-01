@@ -6,9 +6,9 @@ defmodule LordCore.PropertyView do
     :name,
     :address,
     :city,
-    :state,
-    :zip
+    :zip,
+    :company_id,
+    :id,
+    :state
   ]
-
-  has_many :units, serializer: LordCore.UnitView
 end

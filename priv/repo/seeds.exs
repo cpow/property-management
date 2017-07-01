@@ -1,6 +1,6 @@
 company = LordCore.Factory.insert(:company, name: "first properties")
 
-property = LordCore.Factory.insert(:property,
+LordCore.Factory.insert(:property,
   name: "brittin ave",
   address: "32 brittin ave",
   city: "bridgeport",
@@ -8,10 +8,6 @@ property = LordCore.Factory.insert(:property,
   zip: "06605",
   company_id: company.id
 )
-
-unit = LordCore.Factory.insert(:unit,
-                               unit_number: "424",
-                               property_id: property.id)
 
 LordCore.Factory.insert(:user,
   first_name: "tophie",
@@ -31,5 +27,4 @@ LordCore.Factory.insert(:user,
   email: "tenant@example.com",
   password_hash: Comeonin.Bcrypt.hashpwsalt("test1234"),
   role: "tenant",
-  unit_id: unit.id
 )

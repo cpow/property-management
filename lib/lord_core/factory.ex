@@ -27,10 +27,4 @@ defmodule LordCore.Factory do
       role: "tenant"
     }
   end
-
-  def unit_factory do
-    %LordCore.Unit{
-      unit_number: "424"
-    }
-  end
 end

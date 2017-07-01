@@ -1,7 +1,6 @@
 defmodule LordCore.StripeAccountController do
   use LordCore.Web, :controller
   alias LordCore.StripeAccount
-  require IEx
 
   plug Guardian.Plug.EnsureAuthenticated, [handler: LordCore.AuthErrorHandler]
 
@@ -11,22 +10,6 @@ defmodule LordCore.StripeAccountController do
   end
 
   def create(conn, %{"data" => %{"attributes" => attrs}}, current_user) do
-    # -H Content-Type="application/json" \
-    # -d client_id="{PLAID_CLIENT_ID}" \
-    # -d secret="{PLAID_SECRET}" \
-    # -d public_token="{PLAID_LINK_PUBLIC_TOKEN}"
-    #
-
-    # Create bank account token
-    # curl -X POST https://sandbox.plaid.com/processor/stripe/bank_account_token/create \
-    # -H 'Content-type: application/json'
-    # -d '{
-    #   "client_id": "[Plaid Client ID],
-    #   "secret": "[Plaid secret]",
-    #   "access_token": "[Access token]",
-    #   "account_id": "[Account ID]",
-    # }'
-
     public_token = attrs["public_token"]
     account_id = attrs["account_id"]
     public_endpoint = "https://sandbox.plaid.com/item/public_token/exchange"
