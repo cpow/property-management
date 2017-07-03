@@ -4,7 +4,7 @@ defmodule LordCore.UserController do
 
   plug Guardian.Plug.EnsureAuthenticated, [handler: LordCore.AuthErrorHandler] when not action in [:create, :new]
 
-  def index(conn, _params, _current_user) do
+  def index(conn, _params, current_user) do
     users = Repo.all(User)
     render(conn, "index.json-api", data: users)
   end
@@ -34,7 +34,7 @@ defmodule LordCore.UserController do
     conn |> render("show.json-api", data: current_user)
   end
 
-  def show(conn, %{"id" => id}, _current_user) do
+  def show(conn, %{"id" => id}, current_user) do
     user = Repo.get!(User, id)
     render(conn, "show.json-api", data: user)
   end
