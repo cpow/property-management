@@ -1,25 +1,39 @@
 defmodule LordCore.PropertyControllerTest do
   use LordCore.ConnCase
-
   alias LordCore.Property
-  @valid_attrs %{address: "some content", city: "some content", name: "some content", state: "some content", zip: "some content"}
+
+  @valid_attrs %{
+    address: "some content",
+    city: "some content",
+    name: "some content",
+    state: "some content",
+    zip: "some content"
+  }
   @invalid_attrs %{}
 
   setup %{conn: conn} do
     {:ok, conn: put_req_header(conn, "accept", "application/json")}
   end
 
-  test "lists only the company's properties on index", %{conn: conn} do
-    company = insert(:company, name: "some company")
-    property = insert(:property, company: company)
+  test "lists only the current user's company's properties on index", %{conn: conn} do
+    user = Guardian.Plug.current_resource(conn)
+    property = insert(:property, company: user.company)
     insert(:property, name: "NOT GUNNA BE HERE")
 
-    conn = get conn, property_path(conn, :index, %{company_id: company.id})
+    conn = get conn, property_path(conn, :index)
     assert json_response(conn, 200) == rendered_index([property])
   end
 
+  test "doesn't list anything if current user has no properties", %{conn: conn} do
+    insert(:property)
+
+    conn = get conn, property_path(conn, :index)
+    assert json_response(conn, 200) == rendered_index([])
+  end
+
   test "shows chosen resource", %{conn: conn} do
-    property = insert(:property)
+    user = Guardian.Plug.current_resource(conn)
+    property = insert(:property, company: user.company)
     conn = get conn, property_path(conn, :show, property)
     assert json_response(conn, 200) == rendered_property(property)
   end

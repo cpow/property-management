@@ -1,13 +1,19 @@
 company = LordCore.Factory.insert(:company, name: "first properties")
 
-LordCore.Factory.insert(:property,
-  name: "brittin ave",
-  address: "32 brittin ave",
-  city: "bridgeport",
+property = LordCore.Factory.insert(:property,
+  name: "32-34 brittin ave",
+  address: "32-34 brittin ave",
+  city: "Bridgeport",
   state: "CT",
   zip: "06605",
   company_id: company.id
 )
+
+LordCore.Factory.insert(:unit,
+                        property: property,
+                        unit_address: "32 Brittin Ave"
+                        bedrooms: 2,
+                        bathrooms: 1,
 
 LordCore.Factory.insert(:user,
   first_name: "tophie",

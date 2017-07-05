@@ -24,7 +24,8 @@ defmodule LordCore.Factory do
       last_name: "power",
       username: "cpow85",
       password_hash: Comeonin.Bcrypt.hashpwsalt("something"),
-      role: "tenant"
+      role: "tenant",
+      company: insert(:company)
     }
   end
 end
