@@ -1,8 +1,8 @@
 defmodule LordCore.PropertyController do
   use LordCore.Web, :controller
-  import Ecto.Query, only: [from: 2]
   alias LordCore.Property
-  require IEx
+  import Ecto.Query, only: [from: 2]
+  import Ecto.Changeset, only: [put_assoc: 3]
 
   plug Guardian.Plug.EnsureAuthenticated, [handler: LordCore.AuthErrorHandler]
 
@@ -13,9 +13,10 @@ defmodule LordCore.PropertyController do
     render(conn, "index.json-api", data: properties)
   end
 
-  def create(conn, %{"property" => property_params}, current_user) do
-    Map.put(property_params, "company_id", current_user.company_id)
+  def create(conn, %{"data" => %{"attributes" => property_params}}, current_user) do
+    current_user = Repo.preload(current_user, :company)
     changeset = Property.changeset(%Property{}, property_params)
+                |> put_assoc(:company, current_user.company)
 
     case Repo.insert(changeset) do
       {:ok, property} ->
@@ -35,7 +36,7 @@ defmodule LordCore.PropertyController do
     render(conn, "show.json-api", data: property)
   end
 
-  def update(conn, %{"id" => id, "property" => property_params}, _current_user) do
+  def update(conn, %{"data" => %{"attributes" => property_params}, "id" => id}, _current_user) do
     property = Repo.get!(Property, id)
     changeset = Property.changeset(property, property_params)
 

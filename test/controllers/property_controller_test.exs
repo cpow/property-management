@@ -45,13 +45,26 @@ defmodule LordCore.PropertyControllerTest do
   end
 
   test "creates and renders resource when data is valid", %{conn: conn} do
-    conn = post conn, property_path(conn, :create), property: @valid_attrs
+    conn = post conn, property_path(conn, :create),
+      data: %{attributes: @valid_attrs}
     assert json_response(conn, 201)["data"]["id"]
     assert Repo.get_by(Property, @valid_attrs)
   end
 
+  test "adds company of current user to prop when valid", %{conn: conn} do
+    user = Guardian.Plug.current_resource(conn)
+
+    conn = post conn, property_path(conn, :create),
+      data: %{attributes: @valid_attrs}
+    property = Repo.get_by(Property, @valid_attrs)
+
+    assert json_response(conn, 201)["data"]["id"]
+    assert property.company_id == user.company_id
+  end
+
   test "does not create resource and renders errors when data is invalid", %{conn: conn} do
-    conn = post conn, property_path(conn, :create), property: @invalid_attrs
+    conn = post conn, property_path(conn, :create),
+      data: %{attributes: @invalid_attrs}
     assert json_response(conn, 422)["errors"] != %{}
   end
 
