@@ -1,5 +1,5 @@
 defmodule LordCore.PropertyControllerTest do
-  use LordCore.ConnCase
+  use LordCoreWeb.ConnCase
   alias LordCore.Property
 
   @valid_attrs %{

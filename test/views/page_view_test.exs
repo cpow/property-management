@@ -1,3 +1,3 @@
 defmodule LordCore.PageViewTest do
-  use LordCore.ConnCase, async: true
+  use LordCoreWeb.ConnCase, async: true
 end

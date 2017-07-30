@@ -1,4 +1,4 @@
-defmodule LordCore.ConnCase do
+defmodule LordCoreWeb.ConnCase do
   @moduledoc """
   This module defines the test case to be used by
   tests that require setting up a connection.
@@ -26,10 +26,10 @@ defmodule LordCore.ConnCase do
       import Ecto.Query
       import LordCore.Factory
 
-      import LordCore.Router.Helpers
+      import LordCoreWeb.Router.Helpers
 
       # The default endpoint for testing
-      @endpoint LordCore.Endpoint
+      @endpoint LordCoreWeb.Endpoint
     end
   end
 

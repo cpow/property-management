@@ -1,5 +1,5 @@
 defmodule LordCore.UserControllerTest do
-  use LordCore.ConnCase
+  use LordCoreWeb.ConnCase
 
   alias LordCore.User
 
