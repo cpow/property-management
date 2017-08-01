@@ -48,10 +48,10 @@ defmodule LordCore.CompanyControllerTest do
   end
 
   defp rendered_company(company) do
-    LordCore.CompanyView.render("show.json-api", data: company)
+    LordCore.Web.CompanyView.render("show.json-api", data: company)
   end
 
   defp rendered_index do
-    LordCore.CompanyView.render("index.json-api", data: Repo.all(Company))
+    LordCore.Web.CompanyView.render("index.json-api", data: Repo.all(Company))
   end
 end

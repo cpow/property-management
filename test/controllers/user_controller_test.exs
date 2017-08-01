@@ -66,10 +66,10 @@ defmodule LordCore.UserControllerTest do
   end
 
   defp rendered_user(user) do
-    LordCore.UserView.render("show.json-api", data: user)
+    LordCore.Web.UserView.render("show.json-api", data: user)
   end
 
   defp rendered_index do
-    LordCore.UserView.render("index.json-api", data: Repo.all(User))
+    LordCore.Web.UserView.render("index.json-api", data: Repo.all(User))
   end
 end

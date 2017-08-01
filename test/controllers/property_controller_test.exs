@@ -70,14 +70,16 @@ defmodule LordCore.PropertyControllerTest do
 
   test "updates and renders chosen resource when data is valid", %{conn: conn} do
     property = Repo.insert! %Property{}
-    conn = put conn, property_path(conn, :update, property), property: @valid_attrs
+    conn = put conn, property_path(conn, :update, property),
+      data: %{attributes: @valid_attrs}
     assert json_response(conn, 200)["data"]["id"]
     assert Repo.get_by(Property, @valid_attrs)
   end
 
   test "does not update chosen resource and renders errors when data is invalid", %{conn: conn} do
     property = Repo.insert! %Property{}
-    conn = put conn, property_path(conn, :update, property), property: @invalid_attrs
+    conn = put conn, property_path(conn, :update, property),
+      data: %{attributes: @invalid_attrs}
     assert json_response(conn, 422)["errors"] != %{}
   end
 
@@ -89,10 +91,10 @@ defmodule LordCore.PropertyControllerTest do
   end
 
   defp rendered_index(properties) do
-    LordCore.PropertyView.render("index.json-api", data: properties)
+    LordCore.Web.PropertyView.render("index.json-api", data: properties)
   end
 
   defp rendered_property(property) do
-    LordCore.PropertyView.render("show.json-api", data: property)
+    LordCore.Web.PropertyView.render("show.json-api", data: property)
   end
 end
