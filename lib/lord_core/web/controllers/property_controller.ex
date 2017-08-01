@@ -1,4 +1,4 @@
-defmodule LordCoreWeb.PropertyController do
+defmodule LordCore.Web.PropertyController do
   use LordCore.Web, :controller
   alias LordCore.Property
   import Ecto.Query, only: [from: 2]
@@ -27,7 +27,7 @@ defmodule LordCoreWeb.PropertyController do
       {:error, changeset} ->
         conn
         |> put_status(:unprocessable_entity)
-        |> render(LordCoreWeb.ChangesetView, "error.json", changeset: changeset)
+        |> render(LordCore.Web.ChangesetView, "error.json", changeset: changeset)
     end
   end
 
@@ -46,7 +46,7 @@ defmodule LordCoreWeb.PropertyController do
       {:error, changeset} ->
         conn
         |> put_status(:unprocessable_entity)
-        |> render(LordCoreWeb.ChangesetView, "error.json", changeset: changeset)
+        |> render(LordCore.Web.ChangesetView, "error.json", changeset: changeset)
     end
   end
 

@@ -1,4 +1,4 @@
-defmodule LordCoreWeb.ErrorView do
+defmodule LordCore.Web.ErrorView do
   use LordCore.Web, :view
 
   def render("404.html", _assigns) do

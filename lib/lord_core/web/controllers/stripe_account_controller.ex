@@ -1,4 +1,4 @@
-defmodule LordCoreWeb.StripeAccountController do
+defmodule LordCore.Web.StripeAccountController do
   use LordCore.Web, :controller
   alias LordCore.StripeAccount
 
@@ -56,7 +56,7 @@ defmodule LordCoreWeb.StripeAccountController do
       {:error, changeset} ->
         conn
         |> put_status(:unprocessable_entity)
-        |> render(LordCoreWeb.ChangesetView, "error.json", changeset: changeset)
+        |> render(LordCore.Web.ChangesetView, "error.json", changeset: changeset)
     end
   end
 

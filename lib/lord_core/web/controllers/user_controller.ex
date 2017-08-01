@@ -1,4 +1,4 @@
-defmodule LordCoreWeb.UserController do
+defmodule LordCore.Web.UserController do
   use LordCore.Web, :controller
   alias LordCore.User
 
@@ -26,7 +26,7 @@ defmodule LordCoreWeb.UserController do
       {:error, changeset} ->
         conn
         |> put_status(:unprocessable_entity)
-        |> render(LordCoreWeb.ChangesetView, "error.json", changeset: changeset)
+        |> render(LordCore.Web.ChangesetView, "error.json", changeset: changeset)
     end
   end
 
@@ -49,7 +49,7 @@ defmodule LordCoreWeb.UserController do
       {:error, changeset} ->
         conn
         |> put_status(:unprocessable_entity)
-        |> render(LordCoreWeb.ChangesetView, "error.json", changeset: changeset)
+        |> render(LordCore.Web.ChangesetView, "error.json", changeset: changeset)
     end
   end
 

@@ -1,4 +1,4 @@
-defmodule LordCoreWeb.SessionController do
+defmodule LordCore.Web.SessionController do
   import Plug.Conn
   use LordCore.Web, :controller
 

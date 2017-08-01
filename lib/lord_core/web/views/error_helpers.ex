@@ -1,4 +1,4 @@
-defmodule LordCoreWeb.ErrorHelpers do
+defmodule LordCore.Web.ErrorHelpers do
   @moduledoc """
   Conveniences for translating and building error messages.
   """
@@ -32,9 +32,9 @@ defmodule LordCoreWeb.ErrorHelpers do
     #     dgettext "errors", "is invalid"
     #
     if count = opts[:count] do
-      Gettext.dngettext(LordCoreWeb.Gettext, "errors", msg, msg, count, opts)
+      Gettext.dngettext(LordCore.Web.Gettext, "errors", msg, msg, count, opts)
     else
-      Gettext.dgettext(LordCoreWeb.Gettext, "errors", msg, opts)
+      Gettext.dgettext(LordCore.Web.Gettext, "errors", msg, opts)
     end
   end
 end

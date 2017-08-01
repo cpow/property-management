@@ -28,21 +28,21 @@ defmodule LordCore.Web do
 
   def controller do
     quote do
-      use Phoenix.Controller, namespace: LordCoreWeb
+      use Phoenix.Controller, namespace: LordCore.Web
 
       alias LordCore.Repo
       import Ecto
       import Ecto.Query
 
-      import LordCoreWeb.Router.Helpers
-      import LordCoreWeb.Gettext
+      import LordCore.Web.Router.Helpers
+      import LordCore.Web.Gettext
     end
   end
 
   def view do
     quote do
       use Phoenix.View, root: "lib/lord_core_web/templates",
-                        namespace: LordCoreWeb
+                        namespace: LordCore.Web
 
       # Import convenience functions from controllers
       import Phoenix.Controller, only: [get_csrf_token: 0, get_flash: 2, view_module: 1]
@@ -50,9 +50,9 @@ defmodule LordCore.Web do
       # Use all HTML functionality (forms, tags, etc)
       use Phoenix.HTML
 
-      import LordCoreWeb.Router.Helpers
-      import LordCoreWeb.ErrorHelpers
-      import LordCoreWeb.Gettext
+      import LordCore.Web.Router.Helpers
+      import LordCore.Web.ErrorHelpers
+      import LordCore.Web.Gettext
     end
   end
 
@@ -69,7 +69,7 @@ defmodule LordCore.Web do
       alias LordCore.Repo
       import Ecto
       import Ecto.Query
-      import LordCoreWeb.Gettext
+      import LordCore.Web.Gettext
     end
   end
 

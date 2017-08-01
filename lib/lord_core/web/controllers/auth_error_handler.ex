@@ -1,4 +1,4 @@
-defmodule LordCoreWeb.AuthErrorHandler do
+defmodule LordCore.Web.AuthErrorHandler do
   use LordCore.Web, :controller
 
   def unauthenticated(conn, _params) do

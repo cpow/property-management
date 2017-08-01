@@ -1,4 +1,4 @@
-defmodule LordCoreWeb.UserView do
+defmodule LordCore.Web.UserView do
   use LordCore.Web, :view
   alias LordCore.Repo
   use JaSerializer.PhoenixView
@@ -11,12 +11,12 @@ defmodule LordCoreWeb.UserView do
 
   has_one :company,
     include: false,
-    serializer:  LordCoreWeb.CompanyView,
+    serializer:  LordCore.Web.CompanyView,
     type: "company",
     field: :company_id
 
   has_one :stripe_account,
-    include: LordCoreWeb.StripeAccountView
+    include: LordCore.Web.StripeAccountView
 
   def stripe_account(struct, conn) do
     case struct.stripe_account do

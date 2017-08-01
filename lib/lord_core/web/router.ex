@@ -1,4 +1,4 @@
-defmodule LordCoreWeb.Router do
+defmodule LordCore.Web.Router do
   use LordCore.Web, :router
 
   pipeline :api do
@@ -8,7 +8,7 @@ defmodule LordCoreWeb.Router do
     plug JaSerializer.Deserializer
   end
 
-  scope "/api/v1", LordCoreWeb do
+  scope "/api/v1", LordCore.Web do
     pipe_through :api
 
     resources "/users", UserController, except: [:new, :edit]

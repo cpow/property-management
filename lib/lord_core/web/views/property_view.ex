@@ -1,4 +1,4 @@
-defmodule LordCoreWeb.PropertyView do
+defmodule LordCore.Web.PropertyView do
   use LordCore.Web, :view
   use JaSerializer.PhoenixView
 

@@ -1,4 +1,4 @@
-defmodule LordCoreWeb.StripeAccountView do
+defmodule LordCore.Web.StripeAccountView do
   use LordCore.Web, :view
   use JaSerializer.PhoenixView
 

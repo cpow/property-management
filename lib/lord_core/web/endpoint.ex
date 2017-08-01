@@ -1,7 +1,7 @@
-defmodule LordCoreWeb.Endpoint do
+defmodule LordCore.Web.Endpoint do
   use Phoenix.Endpoint, otp_app: :lord_core
 
-  socket "/socket", LordCoreWeb.UserSocket
+  socket "/socket", LordCore.Web.UserSocket
 
   # Serve at "/" the static files from "priv/static" directory.
   #
@@ -39,5 +39,5 @@ defmodule LordCoreWeb.Endpoint do
     signing_salt: "Aerqj7Uk"
 
   plug Corsica, origins: "*", allow_headers: ["accept", "content-type"]
-  plug LordCoreWeb.Router
+  plug LordCore.Web.Router
 end

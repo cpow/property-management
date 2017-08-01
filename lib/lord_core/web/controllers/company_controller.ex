@@ -1,4 +1,4 @@
-defmodule LordCoreWeb.CompanyController do
+defmodule LordCore.Web.CompanyController do
   use LordCore.Web, :controller
   alias LordCore.Company
 
@@ -19,7 +19,7 @@ defmodule LordCoreWeb.CompanyController do
       {:error, changeset} ->
         conn
         |> put_status(:unprocessable_entity)
-        |> render(LordCoreWeb.ChangesetView, "error.json", changeset: changeset)
+        |> render(LordCore.Web.ChangesetView, "error.json", changeset: changeset)
     end
   end
 
@@ -38,7 +38,7 @@ defmodule LordCoreWeb.CompanyController do
       {:error, changeset} ->
         conn
         |> put_status(:unprocessable_entity)
-        |> render(LordCoreWeb.ChangesetView, "error.json", changeset: changeset)
+        |> render(LordCore.Web.ChangesetView, "error.json", changeset: changeset)
     end
   end
 

@@ -1,4 +1,4 @@
-defmodule LordCoreWeb.ChangesetView do
+defmodule LordCore.Web.ChangesetView do
   use LordCore.Web, :view
 
   def render("error.json", %{changeset: changeset}) do

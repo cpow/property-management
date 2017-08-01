@@ -1,4 +1,4 @@
-defmodule LordCoreWeb.UserSocket do
+defmodule LordCore.Web.UserSocket do
   use Phoenix.Socket
 
   ## Channels

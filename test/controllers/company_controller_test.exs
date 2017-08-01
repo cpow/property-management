@@ -1,5 +1,5 @@
 defmodule LordCore.CompanyControllerTest do
-  use LordCoreWeb.ConnCase
+  use LordCore.Web.ConnCase
 
   alias LordCore.Company
   @valid_attrs %{address: "some content", name: "some content", phone_number: "some content"}

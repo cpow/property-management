@@ -1,4 +1,4 @@
-defmodule LordCoreWeb.SessionView do
+defmodule LordCore.Web.SessionView do
   use LordCore.Web, :view
 
   def render("token.json", %{token: token}) do
