@@ -1,5 +1,5 @@
 defmodule LordCore.PropertyControllerTest do
-  use LordCore.Web.ConnCase
+  use LordCoreWeb.ConnCase
   alias LordCore.Property
 
   @valid_attrs %{
@@ -91,10 +91,10 @@ defmodule LordCore.PropertyControllerTest do
   end
 
   defp rendered_index(properties) do
-    LordCore.Web.PropertyView.render("index.json-api", data: properties)
+    LordCoreWeb.PropertyView.render("index.json-api", data: properties)
   end
 
   defp rendered_property(property) do
-    LordCore.Web.PropertyView.render("show.json-api", data: property)
+    LordCoreWeb.PropertyView.render("show.json-api", data: property)
   end
 end

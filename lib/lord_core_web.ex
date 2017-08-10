@@ -1,12 +1,12 @@
-defmodule LordCore.Web do
+defmodule LordCoreWeb do
   @moduledoc """
   A module that keeps using definitions for controllers,
   views and so on.
 
   This can be used in your application as:
 
-      use LordCore.Web, :controller
-      use LordCore.Web, :view
+      use LordCoreWeb, :controller
+      use LordCoreWeb, :view
 
   The definitions below will be executed for every view,
   controller, etc, so keep them short and clean, focused
@@ -28,21 +28,21 @@ defmodule LordCore.Web do
 
   def controller do
     quote do
-      use Phoenix.Controller, namespace: LordCore.Web
+      use Phoenix.Controller, namespace: LordCoreWeb
 
       alias LordCore.Repo
       import Ecto
       import Ecto.Query
 
-      import LordCore.Web.Router.Helpers
-      import LordCore.Web.Gettext
+      import LordCoreWeb.Router.Helpers
+      import LordCoreWeb.Gettext
     end
   end
 
   def view do
     quote do
       use Phoenix.View, root: "lib/lord_core_web/templates",
-                        namespace: LordCore.Web
+                        namespace: LordCoreWeb
 
       # Import convenience functions from controllers
       import Phoenix.Controller, only: [get_csrf_token: 0, get_flash: 2, view_module: 1]
@@ -50,9 +50,9 @@ defmodule LordCore.Web do
       # Use all HTML functionality (forms, tags, etc)
       use Phoenix.HTML
 
-      import LordCore.Web.Router.Helpers
-      import LordCore.Web.ErrorHelpers
-      import LordCore.Web.Gettext
+      import LordCoreWeb.Router.Helpers
+      import LordCoreWeb.ErrorHelpers
+      import LordCoreWeb.Gettext
     end
   end
 
@@ -69,7 +69,7 @@ defmodule LordCore.Web do
       alias LordCore.Repo
       import Ecto
       import Ecto.Query
-      import LordCore.Web.Gettext
+      import LordCoreWeb.Gettext
     end
   end
 

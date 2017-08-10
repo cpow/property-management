@@ -1,5 +1,5 @@
 defmodule LordCore.CompanyControllerTest do
-  use LordCore.Web.ConnCase
+  use LordCoreWeb.ConnCase
 
   alias LordCore.Company
   @valid_attrs %{address: "some content", name: "some content", phone_number: "some content"}
@@ -48,10 +48,10 @@ defmodule LordCore.CompanyControllerTest do
   end
 
   defp rendered_company(company) do
-    LordCore.Web.CompanyView.render("show.json-api", data: company)
+    LordCoreWeb.CompanyView.render("show.json-api", data: company)
   end
 
   defp rendered_index do
-    LordCore.Web.CompanyView.render("index.json-api", data: Repo.all(Company))
+    LordCoreWeb.CompanyView.render("index.json-api", data: Repo.all(Company))
   end
 end

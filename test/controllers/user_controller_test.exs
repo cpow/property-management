@@ -1,5 +1,5 @@
 defmodule LordCore.UserControllerTest do
-  use LordCore.Web.ConnCase
+  use LordCoreWeb.ConnCase
 
   alias LordCore.User
 
@@ -66,10 +66,10 @@ defmodule LordCore.UserControllerTest do
   end
 
   defp rendered_user(user) do
-    LordCore.Web.UserView.render("show.json-api", data: user)
+    LordCoreWeb.UserView.render("show.json-api", data: user)
   end
 
   defp rendered_index do
-    LordCore.Web.UserView.render("index.json-api", data: Repo.all(User))
+    LordCoreWeb.UserView.render("index.json-api", data: Repo.all(User))
   end
 end

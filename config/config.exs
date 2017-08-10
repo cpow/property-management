@@ -12,10 +12,10 @@ config :lord_core,
   ecto_repos: [LordCore.Repo]
 
 # Configures the endpoint
-config :lord_core, LordCore.Web.Endpoint,
+config :lord_core, LordCoreWeb.Endpoint,
   url: [host: "localhost"],
   secret_key_base: "SWQOP1eyY9j81LDM9uDxcTSx5mgDZ9ZgUHCQMzpGUD/l6DgNLE9HTWjn4tPPmYKM",
-  render_errors: [view: LordCore.Web.ErrorView, accepts: ~w(html json)],
+  render_errors: [view: LordCoreWeb.ErrorView, accepts: ~w(html json)],
   pubsub: [name: LordCore.PubSub,
            adapter: Phoenix.PubSub.PG2]
 

@@ -11,7 +11,7 @@ defmodule LordCore do
       # Start the Ecto repository
       supervisor(LordCore.Repo, []),
       # Start the endpoint when the application starts
-      supervisor(LordCore.Web.Endpoint, []),
+      supervisor(LordCoreWeb.Endpoint, []),
       # Start your own worker by calling: LordCore.Worker.start_link(arg1, arg2, arg3)
       # worker(LordCore.Worker, [arg1, arg2, arg3]),
     ]

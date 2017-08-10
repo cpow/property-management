@@ -1,4 +1,4 @@
-defmodule LordCore.Web.ChannelCase do
+defmodule LordCoreWeb.ChannelCase do
   @moduledoc """
   This module defines the test case to be used by
   channel tests.
@@ -27,7 +27,7 @@ defmodule LordCore.Web.ChannelCase do
 
 
       # The default endpoint for testing
-      @endpoint LordCore.Web.Endpoint
+      @endpoint LordCoreWeb.Endpoint
     end
   end
 

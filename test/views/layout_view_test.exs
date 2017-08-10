@@ -1,3 +1,3 @@
 defmodule LordCore.LayoutViewTest do
-  use LordCore.Web.ConnCase, async: true
+  use LordCoreWeb.ConnCase, async: true
 end

@@ -1,3 +1,3 @@
 defmodule LordCore.StripeAccountControllerTest do
-  use LordCore.Web.ConnCase
+  use LordCoreWeb.ConnCase
 end
