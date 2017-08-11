@@ -1,4 +1,4 @@
-defmodule LordCore.ModelCase do
+defmodule LordCore.DataCase do
   @moduledoc """
   This module defines the test case to be used by
   model tests.
@@ -21,7 +21,7 @@ defmodule LordCore.ModelCase do
       import Ecto
       import Ecto.Changeset
       import Ecto.Query
-      import LordCore.ModelCase
+      import LordCore.DataCase
     end
   end
 
@@ -57,9 +57,9 @@ defmodule LordCore.ModelCase do
       iex> {:password, "is unsafe"} in changeset.errors
       true
   """
-  def errors_on(struct, data) do
-    struct.__struct__.changeset(struct, data)
-    |> Ecto.Changeset.traverse_errors(&LordCore.ErrorHelpers.translate_error/1)
-    |> Enum.flat_map(fn {key, errors} -> for msg <- errors, do: {key, msg} end)
-  end
+  # def errors_on(struct, data) do
+  #   struct.__struct__.changeset(struct, data)
+  #   |> Ecto.Changeset.traverse_errors(&LordCore.ErrorHelpers.translate_error/1)
+  #   |> Enum.flat_map(fn {key, errors} -> for msg <- errors, do: {key, msg} end)
+  # end
 end

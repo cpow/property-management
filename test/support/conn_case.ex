@@ -65,8 +65,6 @@ defmodule LordCoreWeb.ConnCase do
         |> Plug.Conn.put_req_header("accept", "application/vnd.api+json")
         |> Plug.Conn.put_req_header("content-type", "application/vnd.api+json")
 
-
-
     {:ok, conn: conn}
   end
 end

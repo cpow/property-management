@@ -17,7 +17,7 @@ defmodule LordCore.StripeAccounts.Account do
   @doc false
   def changeset(%Account{} = account, attrs) do
     account
-    |> cast(attrs, [:email, :type, :display_name])
+    |> cast(attrs, [:email, :type, :display_name, :user_id, :company_id])
     |> validate_required([:email, :type, :display_name])
   end
 end

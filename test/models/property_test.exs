@@ -1,5 +1,5 @@
 defmodule LordCore.PropertyTest do
-  use LordCore.ModelCase
+  use LordCore.DataCase
 
   alias LordCore.Property
 

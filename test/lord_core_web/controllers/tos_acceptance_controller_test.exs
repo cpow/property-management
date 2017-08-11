@@ -4,9 +4,9 @@ defmodule LordCoreWeb.TosAcceptanceControllerTest do
   alias LordCore.StripeAccounts
   alias LordCore.StripeAccounts.TosAcceptance
 
-  @create_attrs %{date: ~N[2010-04-17 14:00:00.000000]}
-  @update_attrs %{date: ~N[2011-05-18 15:01:01.000000]}
-  @invalid_attrs %{date: nil}
+  @create_attrs %{date: ~N[2010-04-17 14:00:00.000000], ip: "123.456.012"}
+  @update_attrs %{date: ~N[2011-05-18 15:01:01.000000], ip: "123.456.012"}
+  @invalid_attrs %{date: nil, ip: nil}
 
   def fixture(:tos_acceptance) do
     {:ok, tos_acceptance} = StripeAccounts.create_tos_acceptance(@create_attrs)
@@ -32,7 +32,7 @@ defmodule LordCoreWeb.TosAcceptanceControllerTest do
       conn = get conn, tos_acceptance_path(conn, :show, id)
       assert json_response(conn, 200)["data"] == %{
         "id" => id,
-        "date" => ~N[2010-04-17 14:00:00.000000]}
+        "date" => "2010-04-17T14:00:00.000000Z"}
     end
 
     test "renders errors when data is invalid", %{conn: conn} do
@@ -51,7 +51,7 @@ defmodule LordCoreWeb.TosAcceptanceControllerTest do
       conn = get conn, tos_acceptance_path(conn, :show, id)
       assert json_response(conn, 200)["data"] == %{
         "id" => id,
-        "date" => ~N[2011-05-18 15:01:01.000000]}
+        "date" => "2011-05-18T15:01:01.000000Z"}
     end
 
     test "renders errors when data is invalid", %{conn: conn, tos_acceptance: tos_acceptance} do

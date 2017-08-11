@@ -1,5 +1,5 @@
 defmodule LordCore.UserTest do
-  use LordCore.ModelCase
+  use LordCore.DataCase
 
   alias LordCore.User
 

@@ -1,5 +1,5 @@
 defmodule LordCore.CompanyTest do
-  use LordCore.ModelCase
+  use LordCore.DataCase
 
   alias LordCore.Company
 

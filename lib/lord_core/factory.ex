@@ -3,7 +3,7 @@ defmodule LordCore.Factory do
 
   def company_factory do
     %LordCore.Company{
-      name: sequence("some property management company")
+      name: sequence("Property Management ltd.")
     }
   end
 
