@@ -4,7 +4,7 @@ defmodule LordCoreWeb.PropertyController do
   import Ecto.Query, only: [from: 2]
   import Ecto.Changeset, only: [put_assoc: 3]
 
-  plug Guardian.Plug.EnsureAuthenticated, [handler: LordCore.AuthErrorHandler]
+  plug Guardian.Plug.EnsureAuthenticated, [handler: LordCoreWeb.AuthErrorHandler]
 
   def index(conn, _params, current_user) do
     query = base_query(current_user)

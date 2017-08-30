@@ -4,7 +4,7 @@ defmodule LordCoreWeb.StripeAccountController do
 
   require IEx
 
-  plug Guardian.Plug.EnsureAuthenticated, [handler: LordCore.AuthErrorHandler]
+  plug Guardian.Plug.EnsureAuthenticated, [handler: LordCoreWeb.AuthErrorHandler]
 
   def new(conn, _params, current_user) do
     conn

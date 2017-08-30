@@ -2,7 +2,7 @@ defmodule LordCoreWeb.UserController do
   use LordCoreWeb, :controller
   alias LordCore.User
 
-  plug Guardian.Plug.EnsureAuthenticated, [handler: LordCore.AuthErrorHandler] when not action in [:create, :new]
+  plug Guardian.Plug.EnsureAuthenticated, [handler: LordCoreWeb.AuthErrorHandler] when not action in [:create, :new]
 
   def index(conn, _params, _current_user) do
     users = Repo.all(User)
